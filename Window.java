@@ -1,5 +1,9 @@
 import javax.swing.*;
 
+/**
+ * @author kaito071831
+ * @since 2021/06/22
+ */
 public class Window {
     public static void main(String[] args) {
         JFrame frame = new JFrame("はじめてのSwing");
