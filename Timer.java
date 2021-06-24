@@ -148,7 +148,8 @@ public class Timer {
         start.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
                 time.totalSec = time.getTotalSec();
-                for(int i=0; i<=time.totalSec; i++){
+                int reTotalSec = time.totalSec;
+                for(int i=0; i<reTotalSec; i++){
                     try {
                         Thread.sleep(1000);
                         time.totalSec -= 1;
