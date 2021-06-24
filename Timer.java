@@ -79,7 +79,6 @@ public class Timer {
         m1.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
                 time.min1 += 1;
-                
                 timeM.replaceRange(time.outputTime(time.min1), 1, 2);
                 if(time.min1 >= 10){
                     time.min1 -= 10;
@@ -154,6 +153,7 @@ public class Timer {
                         Thread.sleep(1000);
                         time.totalSec -= 1;
                         time.sec1 -= 1;
+                        timeS.replaceRange(time.outputTime(time.sec1), 1, 2);
                         if(time.sec1 < 0){
                             time.sec1 += 9;
                             time.sec10 -= 1;
@@ -170,7 +170,7 @@ public class Timer {
                             timeM.replaceRange(time.outputTime(time.min10), 0, 1);
                         }
                         System.out.println(time.totalSec);
-                        timeS.replaceRange(time.outputTime(time.sec1), 1, 2);
+                        
                     } catch (InterruptedException f) {
                         System.out.println(f);
                     }
