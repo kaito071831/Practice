@@ -19,7 +19,9 @@ public class Timer {
         JLabel timeMl = new JLabel("分");
         JLabel timeSl = new JLabel("秒");
         JTextArea timeM = new JTextArea(1, 10);
+        timeM.setText("00");
         JTextArea timeS = new JTextArea(1, 10);
+        timeS.setText("00");
         timeIO.add(timeMl);
         timeIO.add(timeM);
         timeIO.add(timeSl);
@@ -54,9 +56,23 @@ public class Timer {
         JButton s1 = new JButton("1秒");
         s1.setMaximumSize(new Dimension(100,50));
 
+        Time time = new Time();
+
         m10.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
-                System.out.println("押されました");
+                time.min += 10;
+                timeM.replaceRange(time.outputMin(time.min), 0, 2);
+                System.out.println(time.getMin());
+                if(time.min >= 60){
+                    time.min -= 60;
+                    if(time.min == 0){
+                        timeM.replaceRange("00", 0, 2);
+                    }else{
+                        timeM.replaceRange(time.outputMin(time.min), 0, 2);
+                    }
+                }else{
+                    timeM.replaceRange(time.outputMin(time.min), 0, 2); 
+                }
             }
         });
 
