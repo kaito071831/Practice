@@ -1,9 +1,10 @@
 import java.awt.*;
-//import java.awt.event.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
  * Timer
+ * @author kaito071831
  */
 public class Timer {
     public static void main(String[] args) {
@@ -11,9 +12,20 @@ public class Timer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 200);
         frame.setLayout(new BorderLayout());
-        JTextArea time = new JTextArea(1, 10);
-        
-        frame.add(time, BorderLayout.NORTH);
+
+        JPanel timeIO = new JPanel();
+        timeIO.setLayout(new FlowLayout());
+
+        JLabel timeMl = new JLabel("分");
+        JLabel timeSl = new JLabel("秒");
+        JTextArea timeM = new JTextArea(1, 10);
+        JTextArea timeS = new JTextArea(1, 10);
+        timeIO.add(timeMl);
+        timeIO.add(timeM);
+        timeIO.add(timeSl);
+        timeIO.add(timeS);
+        frame.add(timeIO, BorderLayout.NORTH);
+
         JButton reset = new JButton("Reset");
         frame.add(reset, BorderLayout.WEST);
         JPanel action = new JPanel();
@@ -42,14 +54,11 @@ public class Timer {
         JButton s1 = new JButton("1秒");
         s1.setMaximumSize(new Dimension(100,50));
 
-        //int min;
-        //int sec;
-
-        // m10.addMouseListener(new MouseAdapter(){
-        //     public void mouseClicked(MouseEvent e){
-        //         System.out.println("押されました");
-        //     }
-        // });
+        m10.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                System.out.println("押されました");
+            }
+        });
 
         buttonLayout.add(m10);
         buttonLayout.add(m1);
@@ -58,5 +67,4 @@ public class Timer {
 
         frame.setVisible(true);
     }
-        
 }
