@@ -1,4 +1,5 @@
 import java.awt.*;
+//import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -11,30 +12,49 @@ public class Timer {
         frame.setSize(400, 200);
         frame.setLayout(new BorderLayout());
         JTextArea time = new JTextArea(1, 10);
+        
         frame.add(time, BorderLayout.NORTH);
+        JButton reset = new JButton("Reset");
+        frame.add(reset, BorderLayout.WEST);
+        JPanel action = new JPanel();
+        action.setLayout(new BoxLayout(action, BoxLayout.Y_AXIS));
+        frame.add(action, BorderLayout.EAST);
+        JButton start = new JButton("Start");
+        start.setMaximumSize(new Dimension(80,80));
+        action.add(start);
+        JButton stop = new JButton("Stop");
+        stop.setMaximumSize(new Dimension(80,80));
+        action.add(stop);
 
-        JPanel buttonA = new JPanel(new FlowLayout());
+
+        JPanel buttonA = new JPanel();
+        JPanel buttonLayout = new JPanel();
+        buttonLayout.setLayout(new BoxLayout(buttonLayout, BoxLayout.Y_AXIS));
         frame.add(buttonA, BorderLayout.CENTER);
-        JButton b1 = new JButton("1");
-        JButton b2 = new JButton("2");
-        JButton b3 = new JButton("3");
-        JButton b4 = new JButton("4");
-        JButton b5 = new JButton("5");
-        JButton b6 = new JButton("6");
-        JButton b7 = new JButton("7");
-        JButton b8 = new JButton("8");
-        JButton b9 = new JButton("9");
-        JButton b0 = new JButton("0");
-        buttonA.add(b1);
-        buttonA.add(b2);
-        buttonA.add(b3);
-        buttonA.add(b4);
-        buttonA.add(b5);
-        buttonA.add(b6);
-        buttonA.add(b7);
-        buttonA.add(b8);
-        buttonA.add(b9);
-        buttonA.add(b0);
+        buttonA.add(buttonLayout);
+        
+        JButton m10 = new JButton("10分");
+        m10.setMaximumSize(new Dimension(100,50));
+        JButton m1 = new JButton("1分");
+        m1.setMaximumSize(new Dimension(100,50));
+        JButton s10 = new JButton("10秒");
+        s10.setMaximumSize(new Dimension(100,50));
+        JButton s1 = new JButton("1秒");
+        s1.setMaximumSize(new Dimension(100,50));
+
+        //int min;
+        //int sec;
+
+        // m10.addMouseListener(new MouseAdapter(){
+        //     public void mouseClicked(MouseEvent e){
+        //         System.out.println("押されました");
+        //     }
+        // });
+
+        buttonLayout.add(m10);
+        buttonLayout.add(m1);
+        buttonLayout.add(s10);
+        buttonLayout.add(s1);
 
         frame.setVisible(true);
     }
