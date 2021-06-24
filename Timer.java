@@ -62,7 +62,7 @@ public class Timer {
             public void mouseClicked(MouseEvent e){
                 time.min10 += 1;
                 
-                timeM.replaceRange(time.outputMin(time.min10), 0, 1);
+                timeM.replaceRange(time.outputTime(time.min10), 0, 1);
                 if(time.min10 >= 6){
                     time.min10 -= 6;
                     if(time.min10 == 0){
@@ -70,7 +70,7 @@ public class Timer {
                     }
                     System.out.println(time.getMin());
                 }else{
-                    timeM.replaceRange(time.outputMin(time.min10), 0, 1); 
+                    timeM.replaceRange(time.outputTime(time.min10), 0, 1); 
                     System.out.println(time.getMin());
                 }
             }
@@ -80,7 +80,7 @@ public class Timer {
             public void mouseClicked(MouseEvent e){
                 time.min1 += 1;
                 
-                timeM.replaceRange(time.outputMin(time.min1), 1, 2);
+                timeM.replaceRange(time.outputTime(time.min1), 1, 2);
                 if(time.min1 >= 10){
                     time.min1 -= 10;
                     if(time.min1 == 0){
@@ -89,7 +89,7 @@ public class Timer {
                     }
                     System.out.println(time.getMin());
                 }else{
-                    timeM.replaceRange(time.outputMin(time.min1), 1, 2); 
+                    timeM.replaceRange(time.outputTime(time.min1), 1, 2); 
                     System.out.println(time.getMin());
                 }
             }
@@ -98,7 +98,7 @@ public class Timer {
         s10.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
                 time.sec10 += 1;
-                timeS.replaceRange(time.outputMin(time.sec10), 0, 1);
+                timeS.replaceRange(time.outputTime(time.sec10), 0, 1);
                 if(time.sec10 >= 6){
                     time.sec10 -= 6;
                     if(time.sec10 == 0){
@@ -106,7 +106,7 @@ public class Timer {
                     }
                     System.out.println(time.getSec());
                 }else{
-                    timeS.replaceRange(time.outputMin(time.sec10), 0, 1); 
+                    timeS.replaceRange(time.outputTime(time.sec10), 0, 1); 
                     System.out.println(time.getSec());
                 }
             }
@@ -115,7 +115,7 @@ public class Timer {
         s1.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
                 time.sec1 += 1;
-                timeS.replaceRange(time.outputMin(time.sec1), 1, 2);
+                timeS.replaceRange(time.outputTime(time.sec1), 1, 2);
                 if(time.sec1 >= 10){
                     time.sec1 -= 10;
                     if(time.sec1 == 0){
@@ -124,7 +124,7 @@ public class Timer {
                     }
                     System.out.println(time.getSec());
                 }else{
-                    timeS.replaceRange(time.outputMin(time.sec1), 1, 2); 
+                    timeS.replaceRange(time.outputTime(time.sec1), 1, 2); 
                     System.out.println(time.getSec());
                 }
             }
@@ -138,10 +138,42 @@ public class Timer {
                 time.sec1 = 0;
                 time.min = 0;
                 time.totalSec = 0;
-                timeM.replaceRange(time.outputMin(time.min10), 0, 1);
-                timeM.replaceRange(time.outputMin(time.min1), 1, 2);
-                timeS.replaceRange(time.outputMin(time.sec10), 0, 1);
-                timeS.replaceRange(time.outputMin(time.sec1), 1, 2);
+                timeM.replaceRange(time.outputTime(time.min10), 0, 1);
+                timeM.replaceRange(time.outputTime(time.min1), 1, 2);
+                timeS.replaceRange(time.outputTime(time.sec10), 0, 1);
+                timeS.replaceRange(time.outputTime(time.sec1), 1, 2);
+            }
+        });
+
+        start.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                time.totalSec = time.getTotalSec();
+                for(int i=0; i<=time.totalSec; i++){
+                    try {
+                        Thread.sleep(1000);
+                        time.totalSec -= 1;
+                        time.sec1 -= 1;
+                        if(time.sec1 < 0){
+                            time.sec1 += 9;
+                            time.sec10 -= 1;
+                            timeS.replaceRange(time.outputTime(time.sec10), 0, 1);
+                        }
+                        if(time.sec10 <0){
+                            time.sec10 += 5;
+                            time.min1 -= 1;
+                            timeM.replaceRange(time.outputTime(time.min1), 1, 2);
+                        }
+                        if(time.min1 < 0){
+                            time.min1 += 9;
+                            time.min10 -= 1;
+                            timeM.replaceRange(time.outputTime(time.min10), 0, 1);
+                        }
+                        System.out.println(time.totalSec);
+                        timeS.replaceRange(time.outputTime(time.sec1), 1, 2);
+                    } catch (InterruptedException f) {
+                        System.out.println(f);
+                    }
+                }
             }
         });
 

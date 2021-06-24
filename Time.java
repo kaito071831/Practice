@@ -23,7 +23,7 @@ public class Time {
         return min;
     }
 
-    public String  outputMin(int minI){
+    public String  outputTime(int minI){
         minO = Integer.toString(minI);
         return minO;
     }
