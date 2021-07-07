@@ -30,10 +30,10 @@ public class KTimer {
         JTextArea timeS = new JTextArea(1, 10);
         timeS.setText("00");
         
-        timeIO.add(timeMl);
         timeIO.add(timeM);
-        timeIO.add(timeSl);
+        timeIO.add(timeMl);
         timeIO.add(timeS);
+        timeIO.add(timeSl);
         frame.add(timeIO, BorderLayout.NORTH);
 
         //タイマー操作ボタンをactionパネルに追加してからフレームに設定
