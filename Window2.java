@@ -15,6 +15,7 @@ public class Window2 {
         button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.out.println("押されました！");
+                label.setText("押すな！押すなよ！");
             }
         });
         //button.addActionListener(new EventListenner());//ボタンを押された時にEventListennerを呼び出す
