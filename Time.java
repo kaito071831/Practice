@@ -1,9 +1,5 @@
 public class Time {
 
-    int min1;
-    int min10;
-    int sec1;
-    int sec10;
     int min;
     int sec;
     int totalSec;
@@ -11,15 +7,14 @@ public class Time {
     String secO;    
 
     public Time(){
-        min1 = 0;
-        min10 = 0;
-        sec1 = 0;
-        sec10 = 0;
+        min = 0;
+        sec = 0;
         totalSec = 0;
+        minO = "0";
+        secO = "0";
     }
 
     public int getMin(){
-        min = min10*10 + min1;
         return min;
     }
 
@@ -29,7 +24,6 @@ public class Time {
     }
 
     public int getSec(){
-        sec = sec10*10 + sec1;
         return sec;
     }
 
