@@ -35,7 +35,7 @@ public class KTimer{
         frame.add(timeIO, BorderLayout.NORTH);
 
         //タイマー操作ボタンをactionパネルに追加してからフレームに設定
-        JButton reset = new JButton("Reset");
+        JButton reset = new JButton("リセット");
         frame.add(reset, BorderLayout.WEST);
 
         JPanel action = new JPanel();
@@ -173,6 +173,14 @@ public class KTimer{
 
                 timer.start();
 
+                //分と秒が0になったときtimerのスケジュールをキャンセルする
+                if(time.min == 0 && time.sec == 0){
+                    timer.stop();
+                    Toolkit.getDefaultToolkit().beep();
+                    JOptionPane.showMessageDialog(frame, "時間になりました！", "アラーム", 1);
+                    return;
+                }
+
                 time.sec--;
 
                 //秒数が0未満になるとき分を1減らして秒数を59増やす
@@ -204,10 +212,7 @@ public class KTimer{
                     timeS.setText(time.secO);
                 }
 
-                //分と秒が0になったときtimerのスケジュールをキャンセルする
-                if(time.min == 0 && time.sec == 0){
-                    timer.stop();
-                }
+               
 
                 //停止ボタンが押されたときtimerのスケジュールをキャンセルする
                 stop.addActionListener(new ActionListener(){
