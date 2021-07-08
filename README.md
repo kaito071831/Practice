@@ -18,7 +18,7 @@
 
 |日付|更新内容|
 |----|-------|
-| 7/8|[java.util.Timer](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Timer.html)と[java.util.TimerTask](https://docs.oracle.com/javase/jp/8/docs/api/java/util/TimerTask.html)を使用していたが[javax.swing.Timer](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/Timer.html)に変更した。|
-|7/8|セットされているタイマーの時刻の出力を[JTextArea](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/JTextArea.html)を利用して行っていたがテキストエリアにユーザーが入力することがないため[JLabel](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/JLabel.html)に変更した。それに伴って時間出力の処理も変更した。|
+|2021/7/8|[java.util.Timer](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Timer.html)と[java.util.TimerTask](https://docs.oracle.com/javase/jp/8/docs/api/java/util/TimerTask.html)を使用していたが[javax.swing.Timer](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/Timer.html)に変更した。|
+|2021/7/8|セットされているタイマーの時刻の出力を[JTextArea](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/JTextArea.html)を利用して行っていたがテキストエリアにユーザーが入力することがないため[JLabel](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/JLabel.html)に変更した。それに伴って時間出力の処理も変更した。|
 |2021/7/8|タイマーが0になったときに音とダイアログが出るようにした。音は[java.awt.Toolkit](https://docs.oracle.com/javase/jp/8/docs/api/java/awt/Toolkit.html)を用いて実装した。ダイアログは[javax.swing.JOptionPane](https://docs.oracle.com/javase/jp/8/docs/api/javax/swing/JOptionPane.html)を用いて実装した。|
 
