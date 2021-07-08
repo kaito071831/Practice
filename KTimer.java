@@ -219,8 +219,6 @@ public class KTimer{
             }
         });
 
-        
-
         //時間設定ボタンをbuttonLayoutパネルに追加
         buttonLayout.add(m10);
         buttonLayout.add(m1);
