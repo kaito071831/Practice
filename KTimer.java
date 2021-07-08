@@ -1,14 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Timer
  * @author kaito071831
  */
-public class KTimer {
+public class KTimer{
     public static void main(String[] args) {
 
         //フレームを生成
@@ -24,10 +22,10 @@ public class KTimer {
         JLabel timeMl = new JLabel("分");
         JLabel timeSl = new JLabel("秒");
         
-        JTextArea timeM = new JTextArea(1, 10);
+        JLabel timeM = new JLabel();
         timeM.setText("00");
         
-        JTextArea timeS = new JTextArea(1, 10);
+        JLabel timeS = new JLabel();
         timeS.setText("00");
         
         timeIO.add(timeM);
@@ -76,26 +74,26 @@ public class KTimer {
         Time time = new Time();
 
         //10分追加ボタンのイベント処理
-        m10.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        m10.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
 
                 time.min += 10;
 
                 if(time.min >= 60){
                     time.min -= 60;
                     time.minO = Integer.toString(time.min);
-                    timeM.replaceRange("0" + time.minO, 0, 2);
+                    timeM.setText("0" + time.minO);
                 }else{
                     time.minO = Integer.toString(time.min);
-                    timeM.replaceRange(time.minO, 0, time.minO.length());
+                    timeM.setText(time.minO);
                 }
 
             }
         });
 
         //1分追加ボタンのイベント処理
-        m1.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        m1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
 
                 time.min += 1;
                 
@@ -106,35 +104,35 @@ public class KTimer {
                 time.minO = Integer.toString(time.min);
 
                 if(time.minO.length() < 2){
-                    timeM.replaceRange(time.minO, 1, time.minO.length() + 1);
+                    timeM.setText("0" + time.minO);
                 }else{
-                    timeM.replaceRange(time.minO, 0, time.minO.length());
+                    timeM.setText(time.minO);
                 }
 
             }
         });
 
         //10秒追加ボタンのイベント処理
-        s10.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        s10.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
 
                 time.sec += 10;
 
                 if(time.sec >= 60){
                     time.sec -= 60;
                     time.secO = Integer.toString(time.sec);
-                    timeS.replaceRange("0" + time.secO, 0, 2);
+                    timeS.setText("0" + time.secO);
                 }else{
                     time.secO = Integer.toString(time.sec);
-                    timeS.replaceRange(time.secO, 0, time.secO.length());
+                    timeS.setText(time.secO);
                 }
 
             }
         });
 
         //1秒追加ボタンのイベント処理
-        s1.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        s1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
 
                 time.sec += 1;
                 
@@ -145,83 +143,78 @@ public class KTimer {
                 time.secO = Integer.toString(time.sec);
 
                 if(time.secO.length() < 2){
-                    timeS.replaceRange(time.secO, 1, time.secO.length() + 1);
+                    timeS.setText("0" + time.secO);
                 }else{
-                    timeS.replaceRange(time.secO, 0, time.secO.length());
+                    timeS.setText(time.secO);
                 }
                 
             }
         });
 
         //リセットボタンのイベント処理
-        reset.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        reset.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
                 
                 time.min = 0;
                 time.sec = 0;
 
-                timeM.replaceRange("00", 0, timeM.getText().length());
-                timeS.replaceRange("00", 0, timeS.getText().length());
+                timeM.setText("00");
+                timeS.setText("00");
             
             }
         });
 
         //スタートボタンのイベント処理
-        start.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
+        start.addActionListener(new ActionListener(){
 
-                Timer timer = new Timer();
+            Timer timer = new Timer(1000, this);
 
-                TimerTask task = new TimerTask(){
-                    public void run(){
+            public void actionPerformed(ActionEvent e){
 
-                        time.sec--;
+                timer.start();
 
-                        //秒数が0未満になるとき分を1減らして秒数を59増やす
-                        if(time.sec < 0){
-                            time.sec += 60;
-                            time.min--;
-                            time.minO = Integer.toString(time.min);
+                time.sec--;
 
-                            //分が1桁になったときは0+分で出力する。そうでなければ通常通り出力する
-                            if(time.min < 10){
-                                timeM.replaceRange("0" + time.minO, 0, time.minO.length() + 1);
-                            }else{
-                                timeM.replaceRange(time.minO, 0, time.minO.length());
-                            }
+                //秒数が0未満になるとき分を1減らして秒数を59増やす
+                if(time.sec < 0){
+                    time.sec += 60;
+                    time.min--;
+                    time.minO = Integer.toString(time.min);
 
-                            //分数が0未満のとき分の出力エリアの表示を00で固定する
-                            if(time.min < 0){
-                                timeM.replaceRange("00", 0, time.minO.length());
-                            }
-
-                        }
-
-                        time.secO = Integer.toString(time.sec);                        
-
-                        //分が1桁になったときは0+分で出力する。そうでなければ通常通り出力する
-                        if(time.sec < 10){
-                            timeS.replaceRange("0" + time.secO, 0, time.secO.length() + 1);
-                        }else{
-                            timeS.replaceRange(time.secO, 0, time.secO.length());
-                        }
-
-                        //分と秒が0になったときtimerのスケジュールをキャンセルする
-                        if(time.min == 0 && time.sec == 0){
-                            timer.cancel();
-                        }
-
-                        //停止ボタンが押されたときtimerのスケジュールをキャンセルする
-                        stop.addMouseListener(new MouseAdapter(){
-                            public void mouseClicked(MouseEvent e){
-                                timer.cancel();
-                            }
-                        });
-
+                    //分が1桁になったときは0+分で出力する。そうでなければ通常通り出力する
+                    if(time.min < 10){
+                        timeM.setText("0" + time.minO);
+                    }else{
+                        timeM.setText(time.minO);
                     }
-                };
-                
-                timer.schedule(task, 1000, 1000);
+
+                    //分数が0未満のとき分の出力エリアの表示を00で固定する
+                    if(time.min < 0){
+                        timeM.setText("00");
+                    }
+
+                }
+
+                time.secO = Integer.toString(time.sec);                        
+
+                //秒が1桁になったときは0+秒で出力する。そうでなければ通常通り出力する
+                if(time.sec < 10){
+                    timeS.setText("0" + time.secO);
+                }else{
+                    timeS.setText(time.secO);
+                }
+
+                //分と秒が0になったときtimerのスケジュールをキャンセルする
+                if(time.min == 0 && time.sec == 0){
+                    timer.stop();
+                }
+
+                //停止ボタンが押されたときtimerのスケジュールをキャンセルする
+                stop.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        timer.stop();
+                    }
+                });
 
             }
         });
